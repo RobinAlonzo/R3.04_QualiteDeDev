@@ -1,14 +1,19 @@
+// Programme qui illustre la mise en œuvre du Patron de Conception Décorateur
 public class Main {
+    // METHODE PRINCIPALE : main ()
     public static void main(String[] args) {
-        ComposantDeBase composantDeBase = new ComposantDeBase();
-        composantDeBase.operation();
-
-        DecorateurA_DeComposant A = new DecorateurA_DeComposant(composantDeBase);
-
-        A.operation();
-
-        DecorateurB_DeComposant B = new DecorateurB_DeComposant(composantDeBase);
-
-        B.operation();
+// Création d’un composantDeBase
+        IComposant composantDeBase = new ComposantDeBase();
+        composantDeBase.operation(); // Fait l’opération de base
+        System.out.println();
+// Création d’un autreComposant de base...
+        IComposant autreComposant = new ComposantDeBase();
+// ... que l’on dote du comportement de décoration du décorateur A ...
+        autreComposant = new DecorateurA_DeComposant (autreComposant);
+        autreComposant.operation(); // Fait l’opération de base décorée par A
+        System.out.println();
+// ... et on le transforme en le dotant EN PLUS des décorations du décorateur B
+        autreComposant = new DecorateurB_DeComposant (autreComposant);
+        autreComposant.operation();// Fait l’opération de base décorée par A et B
     }
 }
